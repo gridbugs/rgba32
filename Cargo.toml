@@ -1,0 +1,17 @@
+[package]
+name = "rgba32"
+description = "Basic 32-bit colour representation and manipulation"
+version = "0.1.0"
+authors = ["Stephen Sherratt <stephen@sherra.tt>"]
+edition = "2018"
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/stevebob/rgba32"
+repository = "https://github.com/stevebob/rgba32"
+documentation = "https://docs.rs/rgba32"
+
+[features]
+serialize = ["serde"]
+
+[dependencies]
+serde = { version = "1.0", features = ["serde_derive"], optional = true }
