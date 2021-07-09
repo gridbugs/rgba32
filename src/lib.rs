@@ -28,3 +28,7 @@ impl Rgba32 {
         ]
     }
 }
+
+pub const fn rgba32(r: u8, g: u8, b: u8, a: u8) -> Rgba32 {
+    Rgba32::new(r, g, b, a)
+}
