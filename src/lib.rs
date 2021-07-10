@@ -36,6 +36,20 @@ impl Rgba32 {
             self.a as f32 / 255.,
         ]
     }
+
+    pub const fn linear_interpolate(self, to: Rgba32, by: u8) -> Self {
+        const fn interpolate_channel(from: u8, to: u8, by: u8) -> u8 {
+            let total_delta = to as i32 - from as i32;
+            let current_delta = (total_delta * by as i32) / 255;
+            (from as i32 + current_delta) as u8
+        }
+        Self {
+            r: interpolate_channel(self.r, to.r, by),
+            g: interpolate_channel(self.g, to.g, by),
+            b: interpolate_channel(self.b, to.b, by),
+            a: interpolate_channel(self.a, to.b, by),
+        }
+    }
 }
 
 pub const fn rgba32(r: u8, g: u8, b: u8, a: u8) -> Rgba32 {
