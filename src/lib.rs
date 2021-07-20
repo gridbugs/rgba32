@@ -37,6 +37,22 @@ impl Rgba32 {
         ]
     }
 
+    pub fn with_r(self, r: u8) -> Self {
+        Self { r, ..self }
+    }
+
+    pub fn with_g(self, g: u8) -> Self {
+        Self { g, ..self }
+    }
+
+    pub fn with_b(self, b: u8) -> Self {
+        Self { b, ..self }
+    }
+
+    pub fn with_a(self, a: u8) -> Self {
+        Self { a, ..self }
+    }
+
     pub const fn linear_interpolate(self, to: Rgba32, by: u8) -> Self {
         const fn interpolate_channel(from: u8, to: u8, by: u8) -> u8 {
             let total_delta = to as i32 - from as i32;
@@ -47,7 +63,26 @@ impl Rgba32 {
             r: interpolate_channel(self.r, to.r, by),
             g: interpolate_channel(self.g, to.g, by),
             b: interpolate_channel(self.b, to.b, by),
-            a: interpolate_channel(self.a, to.b, by),
+            a: interpolate_channel(self.a, to.a, by),
+        }
+    }
+
+    pub fn alpha_composite(self, below: Rgba32) -> Rgba32 {
+        fn mul_u8(a: u8, b: u8) -> u8 {
+            ((a as u16 * b as u16) / 255) as u8
+        }
+        fn div_u8(a: u8, b: u8) -> u8 {
+            ((255 * a as u16) / b as u16) as u8
+        }
+        let alpha_out_rhs = mul_u8(below.a, 255 - self.a);
+        let alpha_out = self.a + alpha_out_rhs;
+        let single_channel =
+            |c_a: u8, c_b: u8| div_u8(mul_u8(c_a, self.a) + mul_u8(c_b, alpha_out_rhs), alpha_out);
+        Self {
+            r: single_channel(self.r, below.r),
+            g: single_channel(self.g, below.g),
+            b: single_channel(self.b, below.b),
+            a: alpha_out,
         }
     }
 }
