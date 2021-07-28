@@ -6,8 +6,8 @@ authors = ["Stephen Sherratt <stephen@sherra.tt>"]
 edition = "2018"
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/stevebob/rgba32"
-repository = "https://github.com/stevebob/rgba32"
+homepage = "https://github.com/gridbugs/rgba32"
+repository = "https://github.com/gridbugs/rgba32"
 documentation = "https://docs.rs/rgba32"
 
 [features]
