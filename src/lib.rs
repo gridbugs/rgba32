@@ -37,6 +37,14 @@ impl Rgba32 {
         ]
     }
 
+    pub fn to_f32_array_rgb_01(self) -> [f32; 3] {
+        [
+            self.r as f32 / 255.,
+            self.g as f32 / 255.,
+            self.b as f32 / 255.,
+        ]
+    }
+
     pub fn with_r(self, r: u8) -> Self {
         Self { r, ..self }
     }
