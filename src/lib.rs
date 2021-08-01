@@ -102,7 +102,7 @@ impl Rgba32 {
             r: single_channel(self.r, scalar),
             g: single_channel(self.g, scalar),
             b: single_channel(self.b, scalar),
-            a: single_channel(self.a, scalar),
+            a: self.a,
         }
     }
 }
