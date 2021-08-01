@@ -45,19 +45,19 @@ impl Rgba32 {
         ]
     }
 
-    pub fn with_r(self, r: u8) -> Self {
+    pub const fn with_r(self, r: u8) -> Self {
         Self { r, ..self }
     }
 
-    pub fn with_g(self, g: u8) -> Self {
+    pub const fn with_g(self, g: u8) -> Self {
         Self { g, ..self }
     }
 
-    pub fn with_b(self, b: u8) -> Self {
+    pub const fn with_b(self, b: u8) -> Self {
         Self { b, ..self }
     }
 
-    pub fn with_a(self, a: u8) -> Self {
+    pub const fn with_a(self, a: u8) -> Self {
         Self { a, ..self }
     }
 
