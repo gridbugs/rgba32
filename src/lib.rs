@@ -93,6 +93,18 @@ impl Rgba32 {
             a: alpha_out,
         }
     }
+
+    pub const fn normalised_scalar_mul(self, scalar: u8) -> Self {
+        const fn single_channel(c: u8, scalar: u8) -> u8 {
+            ((c as u32 * scalar as u32) / 255) as u8
+        }
+        Self {
+            r: single_channel(self.r, scalar),
+            g: single_channel(self.g, scalar),
+            b: single_channel(self.b, scalar),
+            a: single_channel(self.a, scalar),
+        }
+    }
 }
 
 pub const fn rgba32(r: u8, g: u8, b: u8, a: u8) -> Rgba32 {
